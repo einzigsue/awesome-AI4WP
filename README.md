@@ -27,7 +27,7 @@ Click the link of the model name to see the full model categorization.
 
 | Model name | Developer | Operational Data | Open Source | Open Weights | Links |
 | :--- | :--- | :---: | :---: | :---: | :---: |
-|[`AIFS`](https://github.com/einzigsue/awesome-AI4WP/blob/44dbccdd10d572c8e6b6f5d055d5c578c536875f/data.json#L2-L19)|ECMWF|❌|❌|❌|[[paper]](https://arxiv.org/abs/2406.01465), [[access]](https://www.ecmwf.int/en/forecasts/dataset/aifs-machine-learning-data)|
+|[`AIFS`](https://github.com/einzigsue/awesome-AI4WP/blob/cb568c31eb4b2dd1ba625da0f61e3b0fdc17969d/data.json#L2-L19)|ECMWF|❌|❌|❌|[[paper]](https://arxiv.org/abs/2406.01465), [[access]](https://www.ecmwf.int/en/forecasts/dataset/aifs-machine-learning-data)|
 
 ## How to Contribute? 
 Contributions are much welcome! 
