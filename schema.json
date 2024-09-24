@@ -1,0 +1,263 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"type": "object",
+  "properties": {
+    "model name": {
+			"type": "string",
+			"description": "Name of the model.",
+			"minLength": 1,
+			"maxLength": 25
+		},
+		"developer": {
+			"type": "string",
+			"description": "Name of the organization that developed the model.",
+			"minLength": 1,
+			"maxLength": 25
+		},
+		"collectors": {
+			"type": "string",
+			"description": "Name of collector that made the summary of the model.",
+			"minLength": 1,
+			"maxLength": 25
+		},
+
+		"collector comments": {
+			"type": "string",
+			"description": "Description of the model.",
+			"minLength": 1,
+			"maxLength": 200
+		},
+		"training data": {
+			"type": "string",
+			"description": "Description of the data used to train the model.",
+			"minLength": 1,
+			"maxLength": 200
+		},
+		"model architecture": {
+			"type": "string",
+			"description": "Description of the model architecture.",
+			"minLength": 1,
+			"maxLength": 200
+		},
+		"loss function": {
+			"type": "string",
+			"description": "Loss function used for training the model.",
+			"minLength": 1,
+			"maxLength": 100
+		},
+		"scale": {
+			"type": "string",
+			"description": "Geographical scale of the model.",
+			"enum": ["global", "regional", "local"]
+		},
+		"input_grid": {
+			"type": "string",
+			"description": "Type of input grid used by the model.",
+			"enum": ["longitude-latitude", "icosahedral", "cubed-sphere"]
+		},
+		"output_grid": {
+			"type": "string",
+			"description": "Type of output grid used by the model.",
+			"enum": ["longitude-latitude", "icosahedral", "cubed-sphere"]
+		},
+		"spatial resolution": {
+			"type": "number",
+			"description": "Numberical value of the spatial resolution.",
+			"minimum": 0
+		},
+		"spatial resolution unit": {
+			"type": "string",
+			"enum": ["km", "degrees"],
+			"description": "The unit of the resolution, either 'km' or 'degrees'."
+		},
+		"forecast range": {
+			"type": "array",
+			"description": "Forecast range of the model.",
+			"items": {
+				"type": "string",
+				"enum": ["nowcasting", "short", "medium", "seasonal", "climate"]
+			},
+			"minItems": 1,
+			"uniqueItems": true
+		},
+		"temporal resolution": {
+			"type": "number",
+			"description": "Temporal resolution of the model",
+			"minimum": 0
+		},
+		"temporal resolution unit": {
+			"type": "string",
+			"enum": ["hours", "minites","seconds"],
+			"description": "The unit of the temporal resolution"
+		},
+		"input vars": {
+			"type": "array",
+			"description": "input variables of the model. pressure level vars use the convention <var_name>_<level_number>",
+                        "items":{"type": "string"},
+			"minItems": 1,
+                        "uniqueItems": true
+    		},
+		"output vars": {
+			"type": "array",
+			"description": "output variables of the model. pressure level vars use the convention <var_name>_<level_number>",
+                        "items":{"type": "string"},
+			"minItems": 1,
+                        "uniqueItems": true
+    		},
+		"performance": {
+			"type": "array",
+			"description": "An array of performance  measurements.",
+			"required": ["metric","source","measurements"],
+			"items": {
+				"type": "object",
+				"properties": {
+          				"metric": {
+            					"type": "string",
+            					"description": "The name or type of the metric being measured"
+          				},
+          				"source": {
+            					"type": "string",
+            					"description": "The source of the measurement data"
+          				},
+          				"measurements": {
+            					"type": "array",
+            					"description": "An array of lead time and the corresponding evaluation.",
+						"required": ["var","unit","lead time", "evaluation"],
+						"items": {
+              						"type": "object",
+              						"properties": {
+                						"var": {
+                  							"type": "string",
+                  							"description": "The variable name under evaluation. consistent with items in output vars."
+                						},
+          							"unit": {
+            								"type": "string",
+            								"description": "The unit of the figure of merit."
+          							},
+                						"lead time": {
+                  							"type": "number",
+                  							"description": "The lead time value with the unit of temporal resolution unit"
+                						},
+                						"evaluation": {
+                  							"type": "number",
+                  							"description": "The evaluation of performance at the lead time"
+                						}
+              						}
+						},
+						"minItems": 1,
+                        			"uniqueItems": true
+					}
+				}
+			}
+		},
+		"operational_data": {
+			"type": "boolean",
+			"description": "Whether the operational model output data is provided as open data."
+		},
+		"data_license": {
+			"type": ["string", "null"],
+			"description": "License under which the model output data is provided."
+		},
+		"open_source": {
+			"type": "boolean",
+			"description": "Whether the model source code is open source."
+		},
+		"source_license": {
+			"type": ["string", "null"],
+			"description": "License under which the model source code is provided."
+		},
+		"open_weights": {
+			"type": "boolean",
+			"description": "Whether the model weights are provided as open data."
+		},
+		"weights_license": {
+			"type": ["string", "null"],
+			"description": "License under which the model weights are provided."
+		},
+		"number of parameters": {
+                        "description": "number of trainable parameters of the model",
+			"type": ["integer", "null"],
+			"mininum": 0
+		},
+		"published_year": {
+			"type": "number",
+			"description": "Year in which the model was published."
+		},
+		"links": {
+			"type": "object",
+			"properties": {
+				"paper": {
+					"type": "string",
+					"format": "uri",
+					"description": "Link to the paper describing the model."
+				},
+				"code": {
+					"type": "string",
+					"format": "uri",
+					"description": "Link to the code base."
+				},
+				"docs": {
+					"type": "string",
+					"format": "uri",
+					"description": "Documentation page of the model."
+				},
+				"page": {
+					"type": "string",
+					"format": "uri",
+					"description": "Link to webpage or blog describing the model. "
+				}
+			}
+		}
+  },
+	"required": [
+		"model name",
+		"developer",
+		"collectors",
+		"collector comments",
+		"model architecture",
+		"number of parameters",
+		"training data",
+		"loss function",
+		"scale",
+		"spatial resolution",
+		"spatial resolution unit",
+		"forecast range",
+		"temporal resolution",
+		"temporal resolution unit",
+		"input vars",
+                "output vars",
+		"performance",
+		"operational_data",
+		"open_source",
+		"open_weights",
+		"links",
+		"published_year"
+	],
+	"additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": { "operational_data": { "const": true } }
+      },
+      "then": {
+        "required": ["data_license"]
+      }
+    },
+    {
+      "if": {
+        "properties": { "open_source": { "const": true } }
+      },
+      "then": {
+        "required": ["source_license"]
+      }
+    },
+    {
+      "if": {
+        "properties": { "open_weights": { "const": true } }
+      },
+      "then": {
+        "required": ["weights_license"]
+      }
+    }
+  ]
+}

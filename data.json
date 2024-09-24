@@ -1,0 +1,30 @@
+[
+  {
+  "model name": "AIFS",
+  "developer": "ECMWF",
+  "collectors": "NCI",
+  "collector comments": "AIFS is an AI-based global weather forecasting model that uses a graph neural network (GNN) with a transformer-based processor to produce medium-range forecasts.",
+  "training data": "Trained on ERA5 reanalysis data and ECMWF\u2019s operational NWP analyses, covering a wide range of atmospheric and surface variables.",
+  "model architecture": "Graph Neural Network (GNN) with a sliding window transformer processor, utilizing a pre-norm transformer with shifted window attention and GELU activation.",
+  "loss function": "Area-weighted Mean Squared Error (MSE)",
+  "scale": "global",
+  "spatial resolution": 0.25,
+  "spatial resolution unit": "degrees",
+  "forecast range": ["short", "medium"],
+  "temporal resolution": 6,
+  "temporal resolution unit": "hours",
+  "input vars": ["t2m", "v10"],
+  "output vars": ["t2m", "v10"],
+  "performance": [{"metric": "aRMSE", "source": "original paper", "measurements": [{"var": "t2m", "unit": "K", "lead time": 6, "evaluation": 1.2}, {"var": "t2m", "unit": "K", "lead time": 12, "evaluation": 1.8}]}, {"metric": "ACC", "source": "original paper", "measurements": [{"var": "t2m", "unit": "K", "lead time": 6, "evaluation": 1.2}]}],
+  "operational_data": false,
+  "data_license": "CC BY 4.0",
+  "open_source": false,
+  "open_weights": false,
+  "number of parameters": null,
+  "published_year": 2024,
+  "links": {
+    "paper": "https://arxiv.org/abs/2406.01465",
+    "access": "https://www.ecmwf.int/en/forecasts/dataset/aifs-machine-learning-data"
+  }
+}
+]
